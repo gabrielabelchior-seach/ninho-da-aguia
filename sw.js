@@ -1,6 +1,6 @@
 // Service worker: deixa o app abrir rápido e instalável. Os dados sempre vêm do Supabase (online).
-const VERSAO = 'ninho-v1';
-const ARQUIVOS = ['./','index.html','styles.css','app.js','config.js','manifest.webmanifest',
+const VERSAO = 'ninho-v2';
+const ARQUIVOS = ['./','index.html','styles.css','app.js','install.js','config.js','manifest.webmanifest',
   'icons/brasao.png','icons/icon-192.png','icons/icon-512.png','icons/favicon.png','icons/apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(VERSAO).then(c => c.addAll(ARQUIVOS)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== VERSAO).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
